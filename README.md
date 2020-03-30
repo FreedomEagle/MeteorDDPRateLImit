@@ -18,7 +18,7 @@ https://www.meteor.com/tutorials/blaze/creating-an-app
 Then Cypress was installed into the meteor app.
 
 We call the methods to remove rate limiting rules from the client side when the user logged in has the username 'superUser".
-simple-todos/imports/ui/body.js
+MeteorDDP/imports/ui/body.js
 ```javascript
 Tracker.autorun(function(){
 	if (Meteor.user()){
@@ -32,7 +32,7 @@ Tracker.autorun(function(){
 })
 ```
 The methods to remove and edit the DDPRateLimit rule exist on the server side.
- /simple-todos/server/main.js
+ /MeteorDDP/server/main.js
 ```javascript
 if(Meteor.isServer) {
 	var  allowLogIn= {
@@ -62,25 +62,25 @@ if(Meteor.isServer) {
 ```
 Note that once the default rate limit for the connection is removed by Accounts.removeDefaultRateLimit(), there is no function to restore it, so we add our own rules to limit all normal users in case the default rule has been removed.
 
-When adapting to software, you would write a function that would turn on the method call only during testing.                  /simple-todos/imports/ui/body.js
+When adapting to software, you would write a function that would turn on the method call only during testing.                  /MeteorDDP/imports/ui/body.js
 
 ## Installing
 - Clone repo
-- In the parent folder simple-todos/
+- In the parent folder MeteorDDP/
 	- install node_module: npm install npm 
 - In the cypress/e2e/ folder
 	- install node_module: npm install npm 
 	- install all cypress dependency: npm install
 
 ## Run Cypress Tests Through This Command
-- In simple-todos/cypress/e2e
+- In MeteorDDP/cypress/e2e
 	- run the following command : npm run cypress:open:dev
 This command is set to test your localhost:3000/ and  is configurable in  the cypress/e2e/cypress/config/dev.json
 
 # Results
 ### Test in Gherkin Syntax
 
-- simple-todos/cypress/e2e/cypress/integration/meteor-ddp/meteor-ddp.feature
+- MeteorDDP/cypress/e2e/cypress/integration/meteor-ddp/meteor-ddp.feature
 
 ```ruby
 
@@ -111,7 +111,7 @@ Scenario: Super User Logs In Past The Limit
 Given  I am at homepage
 Given  There exists an account with 'superUser', '123456'
 #Everytime superUser logs in, the MeteorApp calls a method in the server side to remove all login rules
-# /simple-todos/imports/ui/body.js -> /simple-todos/server/body.js
+# /MeteorDDP/imports/ui/body.js -> /MeteorDDP/server/body.js
 Then  'superUser' with pw '123456' logs in and logs out 7 times 'Succeeds'
 
 #Test Succeeds
