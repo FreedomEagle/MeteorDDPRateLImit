@@ -62,15 +62,16 @@ if(Meteor.isServer) {
 ```
 Note that once the default rate limit for the connection is removed by Accounts.removeDefaultRateLimit(), there is no function to restore it, so we add our own rules to limit all normal users in case the default rule has been removed.
 
-When adapting to software, you would write a function that would turn on the method call only during testing.                  /MeteorDDP/imports/ui/body.js
+When adapting to software, you would write a function that would turn on the method call only during testing.  
+/MeteorDDP/imports/ui/body.js
 
 ## Installing
 - Clone repo
 - In the parent folder MeteorDDP/
 	- install node_module: npm install npm 
+	- install all cypress dependency: npm install
 - In the cypress/e2e/ folder
 	- install node_module: npm install npm 
-	- install all cypress dependency: npm install
 
 ## Run Cypress Tests Through This Command
 - In MeteorDDP/cypress/e2e
@@ -100,7 +101,7 @@ Then  'normalUser' with pw '123456' logs in and logs out 3 times 'Fails'
 #Test fails with a message from DDPRateLimit
 ```
 
-The test fails as expected by the rate limiting rule that gets added on when signing into Normal User.
+The test fails as expected by the rate limiting rule that gets added on when signing as Normal User.
 
 ![Test Fails Due to DDP](https://i.ibb.co/DrgB8Cx/Screenshot-from-2020-03-30-01-38-12.png)
 
@@ -111,10 +112,9 @@ Scenario: Super User Logs In Past The Limit
 Given  I am at homepage
 Given  There exists an account with 'superUser', '123456'
 #Everytime superUser logs in, the MeteorApp calls a method in the server side to remove all login rules
-# /MeteorDDP/imports/ui/body.js -> /MeteorDDP/server/body.js
 Then  'superUser' with pw '123456' logs in and logs out 7 times 'Succeeds'
 
-#Test Succeeds
+#Test Succeeds 
 ```
 
 ```ruby
@@ -125,10 +125,8 @@ Given  I am at homepage
 When  'normalUser' with pw '123456' logs in and logs out 1 time ''
 Then  'superUser' with pw '123456' logs in and logs out 5 times 'Succeeds'
 
+#Test Succeeds
 ```
-
-The test passes as the Super User removes all rate limiting rules set during the connection.
-
   
 
 ```ruby
@@ -139,7 +137,7 @@ Scenario: Normal  User  Logs  In After The Super User Logs In
 	When  'normalUser' with pw '123456' logs in and logs out 1 time ''
 	And  'superUser' with pw '123456' logs in and logs out 5 times ''
 	Then  'normalUser' with pw '123456' logs in and logs out 3 times 'Fails'
-	#The test fails as expected
+	#The test fails on Normal User Because of the new Rule
 ```
   
 
