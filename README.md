@@ -3,7 +3,7 @@
 
 ## Background
 
-Meteor has built in functions which limit the frequency of method and subscription calls. The built in functions are there to protetect the site framework from attacks as common as simple password-checking script.
+Meteor has built in methods which limit the frequency of method and subscription calls. The built in functions are there to protetect the site framework from attacks as common as simple password-checking script.
 
 The default rule which limit login attempts, new user creation, and password resetsto 5 attempts every 10 seconds per connection, 
 can be removed and replaced. During an automated testing which includes multiple log ins or user creations, this function can 'freeze' the test or return the test as fail.
