@@ -1,5 +1,5 @@
 ﻿
-# Installing User-Specific DDPRateLimiter Functions Within Meteor For Cypress Testing
+# Installing User-Specific DDPRateLimiter Methods Within Meteor For Cypress Testing
 
 ## Background
 
