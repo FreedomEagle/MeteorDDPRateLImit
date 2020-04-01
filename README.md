@@ -75,6 +75,7 @@ When adapting to software, you would write a function that would turn on the met
 
 ## Run Cypress Tests Through This Command
 - In MeteorDDP/cypress/e2e
+	- start meteor server : meteor
 	- run the following command : npm run cypress:open:dev
 This command is set to test your localhost:3000/ and  is configurable in  the cypress/e2e/cypress/config/dev.json
 
