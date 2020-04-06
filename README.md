@@ -20,6 +20,11 @@ Then Cypress was installed into the meteor app.
 We call the methods to remove rate limiting rules from the client side when the user logged in has the username 'superUser".
 MeteorDDP/imports/ui/body.js
 ```javascript
+
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
+import { DDPRateLimiter }   from 'meteor/ddp-rate-limiter';
+
 Tracker.autorun(function(){
 	if (Meteor.user()){
 		if((Meteor.user().username == 'superUser')){
